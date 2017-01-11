@@ -1,0 +1,92 @@
+Sub auxiliar()
+    Workbooks("FORMATO.xlsm").Activate
+    cod_aux = ActiveCell.Offset(0, 1).Value
+    id_grupo = ActiveCell.Offset(0, -1).Value
+    cod_unidad = ActiveCell.Offset(0, -4).Value
+    
+    codigo = 0
+        Workbooks("FORMATO - copia.xlsx").Activate
+        Cells(3, 2).Activate
+        Do While ActiveCell.Value <> ""
+            If cod_aux = ActiveCell.Offset(0, 3).Value And id_grupo = ActiveCell.Offset(0, 2).Value And cod_unidad = ActiveCell.Offset(0, 1).Value Then
+                codigo = ActiveCell.Value
+                Exit Do
+            End If
+            ActiveCell.Offset(1, 0).Activate
+        Loop
+        Workbooks("FORMATO.xlsm").Activate
+        ActiveCell.Value = codigo
+End Sub
+Sub busca_aux()
+Application.ScreenUpdating = False
+    Workbooks("FORMATO.xlsm").Activate
+    cant = CInt(InputBox("introducir cantidad a recorrer", "bucle", 0))
+    cont = 0
+    While cont <= cant
+        Call auxiliar
+        ActiveCell.Offset(1, 0).Activate
+        cont = cont + 1
+    Wend
+    Application.ScreenUpdating = True
+End Sub
+Sub oficina()
+    Workbooks("FORMATO.xlsm").Activate
+    cod_of = ActiveCell.Offset(0, 1).Value
+    cod_unidad = ActiveCell.Offset(0, -6).Value
+    
+    codigo = 0
+        Workbooks("oficinas1.xls").Activate
+        Cells(3, 2).Activate
+        Do While ActiveCell.Value <> ""
+            If cod_of = ActiveCell.Offset(0, 2).Value And cod_unidad = ActiveCell.Offset(0, 1).Value Then
+                codigo = ActiveCell.Value
+                Exit Do
+            End If
+            ActiveCell.Offset(1, 0).Activate
+        Loop
+        Workbooks("FORMATO.xlsm").Activate
+        ActiveCell.Value = codigo
+End Sub
+Sub busca_oficina()
+Application.ScreenUpdating = False
+    Workbooks("FORMATO.xlsm").Activate
+    cant = CInt(InputBox("introducir cantidad a recorrer", "bucle", 0))
+    cont = 0
+    While cont <= cant
+        Call oficina
+        ActiveCell.Offset(1, 0).Activate
+        cont = cont + 1
+    Wend
+    Application.ScreenUpdating = True
+End Sub
+Sub responsables()
+    Workbooks("FORMATO.xlsm").Activate
+    cod_res = ActiveCell.Offset(0, 1).Value
+    id_oficina = ActiveCell.Offset(0, -2).Value
+    cod_unidad = ActiveCell.Offset(0, -8).Value
+    
+    codigo = 0
+        Workbooks("FORMATO - copia.xlsx").Activate
+        Cells(3, 2).Activate
+        Do While ActiveCell.Value <> ""
+            If cod_res = ActiveCell.Offset(0, 4).Value And id_oficina = ActiveCell.Offset(0, 2).Value And cod_unidad = ActiveCell.Offset(0, 1).Value Then
+                codigo = ActiveCell.Value
+                Exit Do
+            End If
+            ActiveCell.Offset(1, 0).Activate
+        Loop
+        Workbooks("FORMATO.xlsm").Activate
+        ActiveCell.Value = codigo
+End Sub
+Sub busca_res()
+Application.ScreenUpdating = False
+    Workbooks("FORMATO.xlsm").Activate
+    cant = CInt(InputBox("introducir cantidad a recorrer", "bucle", 0))
+    cont = 0
+    While cont <= cant
+        Call responsables
+        ActiveCell.Offset(1, 0).Activate
+        cont = cont + 1
+    Wend
+    Application.ScreenUpdating = True
+End Sub

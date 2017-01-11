@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="resumenActivosGrupo" language="groovy" pageWidth="792" pageHeight="595" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7d59b230-f372-4d33-a576-6c7bcd0ee184">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="532"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="p_entidad" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="p_unidad" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="p_usuario" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="p_ufv" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[1.86444]]></defaultValueExpression>
+	</parameter>
+	<parameter name="p_fecha" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="p_logo" class="java.io.InputStream" isForPrompting="false"/>
+	<parameter name="p_end" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="cantidad" class="java.lang.Long"/>
+	<field name="costoInicial" class="java.lang.Double"/>
+	<field name="valor" class="java.lang.Double"/>
+	<field name="valorNeto" class="java.lang.Double"/>
+	<field name="depreciacionGestion" class="java.lang.Double"/>
+	<field name="depreciacionAcumulada" class="java.lang.Double"/>
+	<field name="nombreGrupo" class="java.lang.String"/>
+	<field name="vidaUtil" class="java.lang.Integer"/>
+	<field name="depreciacionAcumuladaInicial" class="java.lang.Double"/>
+	<field name="valorNetoInicial" class="java.lang.Double"/>
+	<field name="valorInicial" class="java.lang.Double"/>
+	<field name="actualizacionGestion" class="java.lang.Double"/>
+	<field name="actualizacionDepreciacionAcumulada" class="java.lang.Double"/>
+	<variable name="v_costoInicial" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{costoInicial}]]></variableExpression>
+	</variable>
+	<variable name="v_valor" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{valor}]]></variableExpression>
+	</variable>
+	<variable name="v_depreciacionGestion" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{depreciacionGestion}]]></variableExpression>
+	</variable>
+	<variable name="v_despreciacionAcumulada" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{depreciacionAcumulada}]]></variableExpression>
+	</variable>
+	<variable name="v_valorNeto" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{valorNeto}]]></variableExpression>
+	</variable>
+	<variable name="v_cantidad" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{cantidad}]]></variableExpression>
+	</variable>
+	<variable name="v_actualizacionGestion" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{actualizacionGestion}]]></variableExpression>
+	</variable>
+	<variable name="v_valorNetoInicial" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{valorNetoInicial}]]></variableExpression>
+	</variable>
+	<variable name="v_valorInicial" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{valorInicial}]]></variableExpression>
+	</variable>
+	<variable name="v_despreciacionAcumuladaInicial" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{depreciacionAcumuladaInicial}]]></variableExpression>
+	</variable>
+	<variable name="v_actualizacionDepreciacionAcumulada" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{actualizacionDepreciacionAcumulada}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="64" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="f9cb4b81-9209-469d-9191-f79809218690" x="1" y="20" width="753" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{p_end}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="12cc6b30-88de-4357-8002-bfa136af7d1c" x="1" y="0" width="753" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RESUMEN DE ACTIVOS FIJOS ORDENADO POR GRUPO CONTABLE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a0e43434-01ac-45f6-b882-eea34eb6a2c0" x="576" y="0" width="94" height="15"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Página:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f4dd1b8b-6b38-461d-af4e-9419da5b0d2f" x="576" y="15" width="94" height="15"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Fecha de Impresión:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d370e299-078b-440a-bd7b-2d758e96cfe5" x="576" y="30" width="94" height="15"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Responsable de Impresión:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="8806324b-b64a-45d2-9b87-a7699edd765f" style="Column header" x="686" y="0" width="67" height="15" forecolor="#736343"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="ce86eea7-5aae-4e94-be71-b50b7417950f" x="686" y="15" width="67" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="95e1a05e-9ce7-47b9-ab9f-bff321051936" x="686" y="30" width="68" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{p_usuario}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="FillFrame">
+				<reportElement uuid="766744da-5df6-4ff5-8f10-51efb955c5d4" x="1" y="-1" width="144" height="56"/>
+				<imageExpression><![CDATA[$P{p_logo}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="60" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="528545e6-b127-4e7b-a2c6-2540ba7a944b" x="0" y="20" width="752" height="39" forecolor="#999999" backcolor="#CCCCCC"/>
+			</rectangle>
+			<textField>
+				<reportElement uuid="a79870d8-537a-4076-9c0a-7e20a1026487" x="36" y="0" width="250" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{p_entidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5bd1c6c1-1143-43aa-ac73-2ed83a0e692f" x="330" y="0" width="251" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{p_unidad}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="1d3e859b-a5e5-4faf-8afd-ed92379410d6" x="286" y="0" width="42" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[UNIDAD:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e910b1c3-0d67-4ea2-821f-96ce6033a094" x="1" y="0" width="33" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[ENTIDAD:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a37eef08-c5bd-4661-a8a3-39e8be2b989c" x="1" y="20" width="101" height="39"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[GRUPO CONTABLE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="40f89f46-c95f-440d-b553-97bc745d3deb" x="330" y="21" width="58" height="39"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[VALOR NETO INICIAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a923e94a-6922-4d0d-a3cd-8bd03683ad2e" x="127" y="20" width="22" height="39"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[VIDA UTIL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e57b844f-7069-4b93-b8dc-3dbfc4dd92fe" x="149" y="20" width="46" height="39"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[COSTO HISTORICO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="395028ce-982e-45b1-ae98-9e2fcdaaced1" x="261" y="20" width="69" height="39"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[DEPREC. ACUM TOTAL DE GRUPO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9f565ca7-968d-46d8-a6e7-f0ad33af8b91" x="102" y="20" width="25" height="39"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[CANT.]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="d0051c8e-f01a-4cfa-b522-dcfec0c4161e" x="692" y="0" width="58" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{p_ufv} + "   Bs"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="220fb10d-57f8-4af5-8a05-a4eea9442dc1" x="649" y="0" width="42" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[INDICE UFV:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="dde254fd-9521-4d6e-a6d9-a64e73afff4e" x="695" y="21" width="55" height="39"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[VALOR NETO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3846fed5-ec36-42ef-b8bc-e1c7ae67013b" x="459" y="20" width="61" height="39"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[COSTO TOTAL ACTUALIZADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0131b665-4c29-454f-a8a9-dbfe1ae24587" x="388" y="20" width="71" height="39"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[ACTUALIZACION GESTION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="71a3fabf-49ea-44d3-b5c9-3ed51a012503" x="195" y="20" width="66" height="39"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[COSTO ACTUALIZ INICIAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9e67a6dd-2320-4f44-b254-b738ac1c3630" x="520" y="20" width="61" height="39"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[DEPRECIACION GESTION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ab34bc8d-9c51-4ec9-a64b-8848046c2f63" x="580" y="20" width="63" height="39"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[ACTUALIZACION DEP. ACUMULADA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0d12301c-ce7b-4a17-8561-424d97d5a35e" x="643" y="21" width="52" height="39"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[DEPRECIACION ACUMULADA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField isStretchWithOverflow="true" pattern="###0.00;-###0.00">
+				<reportElement uuid="fccfc723-c0b7-4f14-b194-f7fd9f960c33" style="Detail" x="459" y="8" width="61" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="###0.00;-###0.00">
+				<reportElement uuid="e5d9333a-af16-48f3-97fc-334ebe13e5e8" style="Detail" x="695" y="8" width="55" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valorNeto}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="eece507b-1964-4a38-90a0-8e0941a6fe98" style="Detail" x="1" y="8" width="101" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombreGrupo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="aa07986a-c44a-4818-afeb-e426d4526048" style="Detail" x="127" y="8" width="22" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vidaUtil}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="###0.00;-###0.00">
+				<reportElement uuid="71f6cb57-6027-4369-b045-ded322784207" style="Detail" x="261" y="8" width="69" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{depreciacionAcumuladaInicial}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="###0.00;-###0.00">
+				<reportElement uuid="d0f1848d-f8c2-40ca-afb3-4a5a791cd412" style="Detail" x="330" y="8" width="58" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valorNetoInicial}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="###0.00;-###0.00">
+				<reportElement uuid="f2a4ee3e-a3fd-4046-bb11-c1aba4fecb3f" style="Detail" x="149" y="8" width="46" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{costoInicial}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="###0.00;-###0.00">
+				<reportElement uuid="f8f841f9-85d2-487f-9496-343b5aea94bd" style="Detail" x="388" y="8" width="71" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{actualizacionGestion}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="ca6fb053-d9e1-4a7a-90e3-35a93d36aa0d" style="Detail" x="102" y="8" width="25" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="###0.00;-###0.00">
+				<reportElement uuid="32f5f6d1-48e2-4a36-ae1a-b2c97a0f760c" style="Detail" x="195" y="8" width="66" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valorInicial}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="###0.00;-###0.00">
+				<reportElement uuid="f01479a4-2404-4629-a47d-63d8c1e63061" style="Detail" x="520" y="8" width="61" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{depreciacionGestion}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="###0.00;-###0.00">
+				<reportElement uuid="56ab708b-8140-40c0-8d3e-e6c80fc26d3f" style="Detail" x="580" y="8" width="63" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{actualizacionDepreciacionAcumulada}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="###0.00;-###0.00">
+				<reportElement uuid="f7d84442-510f-43da-97d3-ee339b5e3084" style="Detail" x="643" y="8" width="52" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{depreciacionAcumulada}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="6" splitType="Stretch">
+			<line>
+				<reportElement uuid="7d26e606-2d94-4263-827b-ad9f1d1bb9c1" positionType="FixRelativeToBottom" x="0" y="3" width="750" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<line>
+				<reportElement uuid="37aa7876-7aa1-4b7b-a330-e30b5f9cd5bc" positionType="FixRelativeToBottom" x="0" y="22" width="751" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField pattern="#,##0.00;#,##0.00-" isBlankWhenNull="true">
+				<reportElement uuid="a7f129f2-2931-42e8-b35e-24ef5b2ca5d9" x="520" y="5" width="61" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{v_depreciacionGestion}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;#,##0.00-">
+				<reportElement uuid="c282d5be-9ac0-476d-8c07-24e2fb211008" x="695" y="5" width="55" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{v_valorNeto}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;#,##0.00-">
+				<reportElement uuid="3a3fa9d7-09d0-431a-a24a-479f8d94d809" x="643" y="5" width="52" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{v_despreciacionAcumulada}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="05edf5b9-9c57-4172-9e17-53df1882a0e6" x="0" y="2" width="41" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[TOTALES:]]></text>
+			</staticText>
+			<textField pattern="#,##0.00;#,##0.00-">
+				<reportElement uuid="37ed1155-2551-4b38-8a78-bca5be929ece" x="459" y="5" width="61" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{v_valor}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;#,##0.00-">
+				<reportElement uuid="1b670569-3ee3-4e26-828e-b2d0db9cae23" x="102" y="5" width="25" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{v_cantidad}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;#,##0.00-">
+				<reportElement uuid="163bd9b7-852c-4d19-810e-b9364aa57fb7" x="580" y="5" width="63" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{v_actualizacionDepreciacionAcumulada}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;#,##0.00-">
+				<reportElement uuid="1f401eeb-a406-4905-bdf8-0e123deba67b" x="149" y="5" width="46" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{v_costoInicial}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;#,##0.00-">
+				<reportElement uuid="e13669f7-f604-4eba-9b3d-d5232558be11" x="388" y="5" width="71" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{v_actualizacionGestion}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;#,##0.00-">
+				<reportElement uuid="bd790e7d-82cf-4f1b-96bc-980c3c6546a2" x="330" y="5" width="58" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{v_valorNetoInicial}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;#,##0.00-">
+				<reportElement uuid="687ce02f-6d20-4865-847d-936035774ec6" x="261" y="5" width="69" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{v_despreciacionAcumuladaInicial}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;#,##0.00-">
+				<reportElement uuid="79f9f2c9-02ae-4264-bfa9-5dd5bb67972f" x="195" y="5" width="66" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{v_valorInicial}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

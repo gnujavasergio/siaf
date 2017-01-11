@@ -1,0 +1,7 @@
+
+La utilizacion de este software es una aplicacion comercial, y no puede ser redistribuida.
+
+1. Origen del software es propietario
+2. Los cambios en este software solo puede ser realizado por el autor.
+3. Para cualquier cambio notifique al autor.
+
